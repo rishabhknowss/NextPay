@@ -8,9 +8,9 @@
         "prisma": "5.11.0"
     },
     "exports": {
-        "./client": "./src/index.ts"
+        "./client": "./index.ts"
     },
     "prisma": {
-        "seed": "ts-node prisma/src/seed.ts"
+        "seed": "ts-node prisma/seed.ts"
     }
 }

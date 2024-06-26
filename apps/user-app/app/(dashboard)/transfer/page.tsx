@@ -1,4 +1,4 @@
-import prisma from "../../../../../packages/db/prisma/src";
+import prisma from "../../../../../packages/db";
 import { AddMoney } from "../../../components/AddMoneyCard";
 import { BalanceCard } from "../../../components/BalanceCard";
 import { OnRampTransactions } from "../../../components/OnRampTransaction";

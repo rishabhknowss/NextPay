@@ -519,6 +519,9 @@ video {
 .h-6 {
   height: 1.5rem;
 }
+.h-\[90vh\] {
+  height: 90vh;
+}
 .h-full {
   height: 100%;
 }
@@ -536,6 +539,9 @@ video {
 }
 .w-screen {
   width: 100vw;
+}
+.min-w-72 {
+  min-width: 18rem;
 }
 .cursor-pointer {
   cursor: pointer;

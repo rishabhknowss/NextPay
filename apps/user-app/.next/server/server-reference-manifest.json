@@ -7,8 +7,16 @@
       "layer": {
         "app/(dashboard)/transfer/page": "action-browser"
       }
+    },
+    "299a79dce1e80bf9ea963c134da50589ea69ad6c": {
+      "workers": {
+        "app/(dashboard)/p2p/page": "(action-browser)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fcheemu-rai%2Fpaytm-project-starter-monorepo%2Fapps%2Fuser-app%2Flib%2Factions%2Fp2pTransfer.tsx%22%2C%5B%22p2pTransfer%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/(dashboard)/p2p/page": "action-browser"
+      }
     }
   },
   "edge": {},
-  "encryptionKey": "yxVEfvjlMVBbsVvAHAQ0pM/e6OkcyAzsohyOR7R7WLQ="
+  "encryptionKey": "fHuqqNblIgtPUsP6eZlYaGWeQFCFY3bBcbQ7gCfGy+Q="
 }

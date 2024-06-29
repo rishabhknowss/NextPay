@@ -1,8 +1,8 @@
-// File: /home/cheemu-rai/paytm-project-starter-monorepo/apps/user-app/app/(dashboard)/dashboard/page.tsx
-import * as entry from '../../../../../app/(dashboard)/dashboard/page.js'
+// File: /home/cheemu-rai/paytm-project-starter-monorepo/apps/user-app/app/(dashboard)/p2p/page.tsx
+import * as entry from '../../../../../app/(dashboard)/p2p/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../../app/(dashboard)/dashboard/page.js')
+type TEntry = typeof import('../../../../../app/(dashboard)/p2p/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

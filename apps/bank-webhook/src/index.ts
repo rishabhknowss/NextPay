@@ -7,6 +7,7 @@ app.use(express.json())
 app.post("/hdfcWebhook", async (req, res) => {
     //TODO: Add zod validation here?
     //TODO: HDFC bank should ideally send us a secret so we know this is sent by them
+    //TODO : transfer only if onramptxn is processing
     const paymentInformation: {
         token: string;
         userId: string;
@@ -51,5 +52,4 @@ app.post("/hdfcWebhook", async (req, res) => {
 
 })
 
-app.listen(process.env.PORT);
-console.log(process.env.PORT)
+app.listen(3003);

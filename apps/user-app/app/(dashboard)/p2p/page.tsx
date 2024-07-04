@@ -1,4 +1,3 @@
-import { Card } from "@repo/ui/card";
 import { SendCard } from "../../../components/SendCard";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
@@ -7,10 +6,14 @@ import { P2pTransactions } from "../../../components/P2pTransactions";
 
 async function getTransactionsP2P() {
   const session = await getServerSession(authOptions);
+  if (!session || !session.user || typeof session.user.id !== 'number') {
+    throw new Error("User session or ID is not available.");
+  }
+
   const p2ptxn = await prisma.p2pTransfer.findMany({
     where: {
       fromUser: {
-        id: Number(session?.user?.id)
+        id: Number(session.user.id),
       },
     },
     include: {
@@ -21,6 +24,7 @@ async function getTransactionsP2P() {
       },
     },
   });
+
   return p2ptxn.map((p) => ({
     time: p.timestamp,
     amount: p.amount,
@@ -28,12 +32,12 @@ async function getTransactionsP2P() {
   }));
 }
 
-export default async function () {
-  const transactions = await getTransactionsP2P()
+export default async function TransferPage() {
+  const transactions = await getTransactionsP2P();
   return (
-    <div className="w-full grid grid-cols-2 ">
+    <div className="w-full grid grid-cols-2">
       <SendCard />
-      <P2pTransactions transactions={transactions}/>
+      <P2pTransactions transactions={transactions} />
     </div>
   );
 }

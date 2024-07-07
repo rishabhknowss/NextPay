@@ -1,81 +1,78 @@
-# Turborepo starter
+# Nextpay
 
-This is an official starter Turborepo.
+Nextpay is a fintech platform , enabling users to manage their accounts, add balances, and perform peer-to-peer (P2P) transfers.
 
-## Using this example
+## Features
 
-Run the following command:
+- User account creation and management
+- Secure authentication using NextAuth
+- Integration with a bank webhook server for transaction confirmation
+- Account balance management
+- Peer-to-peer (P2P) transfers between user accounts
 
-```sh
-npx create-turbo@latest
+## Tech Stack
+
+- Next.js for the frontend and API routes
+- NextAuth for authentication
+- Prisma as the ORM
+- Turborepo for monorepo management
+- Express.js for the bank webhook server
+
+## Project Structure
+
+This project is set up as a Turborepo monorepo with the following structure:
+```
+nextpay/
+├── apps/
+│   ├── bank-webhook/             # Express Server
+│   └── merchant-app/             # Yet to build ( dont run it )
+│   └── user-app/                 # Nextjs Application
+├── packages/
+│   └── ...                       # UI packages / Config files / recoil 
+│   └── db/              
+│     └── schema.prisma           # Prisma schema
+└── package.json
 ```
 
-## What's inside?
+## Getting Started
 
-This Turborepo includes the following packages/apps:
+### Prerequisites
+Docker 
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+### Installation
 
 ```
-cd my-turborepo
-pnpm build
+docker build -t nextpay .
+docker run -p 3000:3000 nextpay
 ```
 
-### Develop
+## Usage
 
-To develop all apps and packages, run the following command:
+There are 2 test accounts, Try login into any of them
 
-```
-cd my-turborepo
-pnpm dev
-```
+1. Number -   1111111111 
+   Password - Alice
 
-### Remote Caching
+2. Number -   2222222222 
+   Password - Bob
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+go to ``/transfer`` endpoint to add balance to the account  
+and it will initiate the transfer 
+then run the bank-webhook and manually post the transaction details to finally add the balance
 
-```
-cd my-turborepo
-npx turbo login
-```
+for p2p transaction , go to ``/p2p`` add the number of the other test account and the amount to transfer , if the amount is sufficient , it will make a successful transaction 
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
 
-```
-npx turbo link
-```
 
-## Useful Links
+## Webhook Server
 
-Learn more about the power of Turborepo:
+The bank webhook server is built with Express.js and has the following endpoint:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- `POST /hdfcWebhook`: Endpoint for receiving transaction confirmations from HDFC bank
+
+
+## Contributing
+
+It is an Open source repository feel free to fix ui , bugs and errors . I have built github ci/cd pipelines to check the build and linting errors 
